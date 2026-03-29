@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tickets Sudameris - Febrero 2026 (Alto vs Medio)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 700px; margin: auto; text-align: center; }
+    h3 { margin-bottom: 10px; }
+    .note { color: #666; font-size: 0.9em; margin-top: 8px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h3>Tickets Sudameris - Febrero 2026 (Alto vs Medio)</h3>
+    <canvas id="ticketsPie" width="600" height="400"></canvas>
+    <div class="note">Periodo: 2026-02-01 a 2026-02-28 · Cliente: Sudameris</div>
+  </div>
+  <script>
+    const labels = ["Alto", "Medio"];
+    const data = {
+      labels: labels,
+      datasets: [{
+        data: [4, 0],
+        backgroundColor: ["#FF6B6B", "#FFD166"],
+        borderColor: '#ffffff',
+        borderWidth: 1
+      }]
+    };
+    const config = {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                const label = ctx.label || '';
+                const value = ctx.raw || 0;
+                return label + ': ' + value;
+              }
+            }
+          }
+        }
+      }
+    };
+    const ctx = document.getElementById('ticketsPie').getContext('2d');
+    new Chart(ctx, config);
+  </script>
+</body>
+</html>
